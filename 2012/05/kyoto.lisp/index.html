@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>よりSchemerフレンドリなJavaScriptへ</title>
+
+  <meta name="description" content="ES Harmonyの話題を中心に、JavaScriptがSchemerにより気に入られるものになりそうですよって話です。" />
+  <meta name="author" content="Taiju Higashi" />
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+  <link href="impress.js/css/impress-demo.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28378627-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+
+  <section class="step" id="start" data-x="0" data-y="0">
+    <h1>よりSchemerフレンドリなJavaScriptへ</h1>
+    <p>'("Kyoto.lisp Tech Talk #1" . "@taiju")</p>
+  </section>
+
+  <section class="step" id="immunity" data-x="0" data-y="1000">
+    <h1>免責</h1>
+    <ul>
+      <li>当スライドで使用するLispコードはGaucheにて評価可能です。また、一部でGauche独自のメソッドを利用している箇所もあります。</li>
+      <li>当スライドでは、JavaScriptとECMAScriptという名前を使っておりますが、厳密に使い分けているわけではありません。文脈によって、適当に選んでいます。</li>
+      <li>将来のECMAScriptに導入することを提案されている機能のサンプルは提案が通らない場合もありますし、仕様が変わる場合もありますので、動く保証はありません。</li>
+    </ul>
+  </section>
+
+  <section class="step title" id="my-profile-title" data-x="0" data-y="2000">
+    <h1>自己紹介</h1>
+  </section>
+
+  <section class="step" id="my-profile" data-x="0" data-y="2000" data-z="-1000">
+    <h1>自己紹介</h1>
+<pre>
+(define profile
+  (hash-table 'eq?
+    '(name . "HIGAHI Taiju")
+    '(from . "Fukui")
+    '(twitter . "@taiju")
+    '(blog . ("あと味" . "http://d.hatena.ne.jp/jdg"))
+    '(favorites . ("JavaScript" "Perl" "Scheme"))))
+</pre>
+  </section>
+
+ <section class="step index" id="agenda-1" data-x="2000" data-y="0">
+    <h1>Agenda</h1>
+    <ul>
+      <li>JavaScriptはSchemerが作った</li>
+      <li>JavaScriptとSchemeの共通点</li>
+      <li>よりSchemerフレンドリなES.next</li>
+      <li>よりSchemerフレンドリなES Harmonyの未来</li>
+    </ul>
+  </section>
+
+  <section class="step title" id="created-schemer" data-x="2000" data-y="1000">
+    <h1>JavaScriptはSchemerが作った</h1>
+  </section>
+
+  <section id="brendan-profile" class="step" data-x="2000" data-y="1000" data-z="1000">
+    <h1>JavaScriptはSchemerが作った</h1>
+    <div class="columns">
+      <div class="column left">
+        <figure>
+          <img src="http://upload.wikimedia.org/wikipedia/commons/0/09/BEich.jpg" alt="Brendan Eich" />
+          <figcaption>俺が作った</figcaption>
+        </figure>
+      </div>
+      <div class="column right">
+        <ul>
+          <li><a href="http://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AC%E3%83%B3%E3%83%80%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%AF">Brendan Eich（ブレンダン・アイク）</a></li>
+          <li>NetScape時代にJavaScriptを開発</li>
+          <li>現Mozilla CTO</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="brendan-promise" data-x="2000" data-y="2000">
+    <blockquote cite="http://brendaneich.com/2008/04/popularity/">
+      As I’ve often said, and as others at Netscape can confirm, I was recruited to Netscape with the promise of “doing Scheme” in the browser.
+    </blockquote>
+    <p class="note"><a href="http://brendaneich.com/2008/04/popularity/">Popularity | Brendan Eich</a></p>
+  </section>
+
+  <section class="step index" id="agenda-2" data-x="3000" data-y="0">
+    <h1>Agenda</h1>
+    <ul>
+      <li><del>JavaScriptはSchemerが作った</del></li>
+      <li>JavaScriptとSchemeの共通点</li>
+      <li>よりSchemerフレンドリなES.next</li>
+      <li>よりSchemerフレンドリなES Harmonyの未来</li>
+    </ul>
+  </section>
+
+  <section class="step title" id="common-title" data-x="3000" data-y="1000">
+    <h1>JavaScriptとSchemeの共通点</h1>
+  </section>
+
+  <section class="step" id="common-list" data-x="3000" data-y="1000" data-z="1000">
+    <h1>JavaScriptとSchemeの共通点</h1>
+    <ul>
+      <li>第一級関数</li>
+      <li>変数と関数の名前空間が同一</li>
+      <li>lambda式 ※1</li>
+      <li>レキシカルスコープ ※2</li>
+    </ul>
+    <p class="note">※1 JavaScriptではlambdaではなくfunctionと書く</p>
+    <p class="note">※2 JavaScriptではレキシカルスコープは関数を定義することによって発生する</p>
+  </section>
+
+  <section class="step" id="common-first-class-function" data-x="3000" data-y="2000">
+    <h1>第一級関数</h1>
+    <h2>JavaScript</h2>
+    <pre>
+var add = function(f1, f2) { return f1() + f2() };
+var one = function() { return 1 };
+var two = function() { return 2 };
+add(one, two);
+// 3
+    </pre>
+    <h2>Scheme</h2>
+    <pre>
+(define add (lambda (f1 f2) (+ (f1) (f2))))
+(define one (lambda () 1))
+(define two (lambda () 2))
+(add one two)
+;; 3
+    </pre>
+  </section>
+
+  <section class="step" id="common-name-space" data-x="3000" data-y="3000">
+    <h1>変数と関数の名前空間が同一</h1>
+    <h2>JavaScript</h2>
+<pre>
+var f = function() {};
+var f = "function";
+f();
+// f is not a function
+</pre>
+    <h2>Scheme</h2>
+<pre>
+(define f (lambda ()))
+(define f "function")
+(f)
+;; invalid application
+</pre>
+  </section>
+
+  <section class="step" id="common-lambda" data-x="3000" data-y="4000">
+    <h1>lambda式</h1>
+    <h2>JavaScript</h2>
+<pre>
+var arithmetic = function(x, y, op) {
+  return op(x, y);
+};
+arithmetic(5, 2, function(x, y) { return x * y });
+// 10
+</pre>
+    <h2>Scheme</h2>
+<pre>
+(define arithmetic (lambda (x y op)
+  (op x y)))
+(arithmetic 5 2 (lambda(x y) (* x y)))
+;; 10
+</pre>
+  </section>
+
+  <section class="step" id="common-lexical" data-x="3000" data-y="5000">
+    <h1>レキシカルスコープ</h1>
+    <div class="columns">
+      <div class="column left">
+        <h2>JavaScript</h2>
+<pre>
+(function() {
+  var i = 100;
+  (function() {
+    var i = 200;
+    console.log(i);
+    // 200
+  })();
+  (function() {
+    var i = 300;
+    console.log(i);
+    // 300
+  })();
+  console.log(i);
+  // 100
+})();
+console.log(i);
+// i is not defined
+</pre>
+      </div>
+      <div class="column right">
+        <h2>Scheme</h2>
+<pre>
+(let
+  ((i 100))
+  (let ((i 200))
+    (print i))
+    ;; 200
+  (let ((i 300))
+    (print i))
+    ;; 300
+  (print i))
+  ;; 100
+(print i)
+;; unboud variable i
+</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="safety-javascript" data-x="3000" data-y="6000">
+    <p>Webに携わっていれば、多かれ少なかれ触ることになるJavaScriptですが、作った人がSchemerで本当に良かったと個人的に思ってます。</p>
+  </section>
+
+  <section class="step" id="my-entry" data-x="3000" data-y="7000">
+    <p>手前味噌ですが、以前もSchemeとJavaScriptの共通点について書きました。</p>
+    <p>ここにいろんな参照先が載ってます。</p>
+    <p class="note"><a href="http://d.hatena.ne.jp/jdg/20100620/1277012557">jstudyで「JavaScriptとLisp」ってタイトルのLTしました - あと味</a></p>
+  </section>
+
+  <section class="step index" id="agenda-3" data-x="4000" data-y="0">
+    <h1>Agenda</h1>
+    <ul>
+      <li><del>JavaScriptはSchemerが作った</del></li>
+      <li><del>JavaScriptとSchemeの共通点</del></li>
+      <li>よりSchemerフレンドリなES.next</li>
+      <li>よりSchemerフレンドリなES Harmonyの未来</li>
+    </ul>
+  </section>
+
+  <section class="step title" id="es-next" data-x="4000" data-y="1000">
+    <h1>よりSchemerフレンドリなES.next</h1>
+  </section>
+
+  <section class="step title" id="history-of-es" data-x="4000" data-y="1000" data-z="1000">
+    <p>の前にES.nextに向かうまでの、ECMAScriptの歴史について簡単にご紹介。</p>
+  </section>
+
+  <section class="step" id="history-es3" data-x="4000" data-y="1000" data-z="-2000">
+    <h1>ECMAScript 3</h1>
+    <p>ほとんどのブラウザで安心して使える堅いバージョン。</p>
+    <p>IE6-IE8はこのバージョンのサポートで止まっている。</p>
+  </section>
+
+  <section class="step" id="history-es4" data-x="4000" data-y="1000" data-z="-3000">
+    <h1>ECMAScript 4</h1>
+    <p>クラスベースのオブジェクト指向の導入を試みる大胆な取り組みだったが、反対も多く、最終的に放棄されたバージョン。</p>
+    <p>ActionScript 3はこのバージョンを採用したため、JavaScriptと似てるようで全然違う言語になった。</p>
+    <p>Schemerは好んで使わんでしょう。 ;-p</p>
+  </section>
+
+  <section class="step" id="history-es5" data-x="4000" data-y="1000" data-z="-4000">
+    <h1><del>ECMAScript 3.1</del> <ins>ECMAScript 5</ins></h1>
+    <p>ECMAScript 4の失敗を経て、対抗勢として策定が進んでいたECMAScript 3.1をベースにECMAScript 5と名前が変更されリリースされたバージョン。</p>
+    <p>現在、主な主要ブラウザは大体このバージョンが使える。</p>
+    <p>IEはIE9とIE10でサポート。</p>
+    <p class="note">※ただし、一部サポートされていない機能のあるブラウザもある。</p>
+  </section>
+
+  <section class="step" id="schemer-favorites-es5" data-x="4000" data-y="2000" data-z="-4000">
+    <p>ECMAScriptの歴史の紹介は以上ですが、ECMAScript 5がサポートされたことで、Schemerにとって嬉しいだろうポイントをご紹介。</p>
+  </section>
+
+  <section class="step" id="for-schemer-es5" data-x="4000" data-y="3000" data-z="-4000">
+    <h1>Schemerにとって嬉しいだろうポイント</h1>
+    <div class="columns">
+      <div class="colum left">
+        <h2>Arrayオブジェクト</h2>
+        <div class="columns">
+          <ul class="clomn left">
+            <li>.forEach</li>
+            <li>.map</li>
+            <li>.every</li>
+          </ul>
+          <ul class="column right">
+            <li>.some</li>
+            <li>.filter</li>
+            <li>.reduce</li>
+            <li>.reduceRight</li>
+          </ul>
+        </div>
+      </div>
+      <div class="colum right">
+        <h2>Functionオブジェクト</h2>
+        <ul>
+          <li>.bind</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">ES5では、特にObject周りが充実しましたが、JavaScriptユニークな仕様に関するものなので、Schemer的に嬉しいかどうかは微妙です。</p>
+  </section>
+
+  <section class="step" id="es5-alternate" data-x="4000" data-y="4000" data-z="-4000">
+    <p>とは言え、ES5は、IE8ですらサポートしていないので、先に紹介したメソッドなどは、ライブラリを利用して、機能追加するか、自分で再定義する必要がありますね。</p>
+    <p class="note">標準仕様で使いたい人向け: es5shim.js<br />
+    標準仕様よりも利便性という人向け: Underscore.js</p>
+  </section>
+
+  <section class="step" id="es5-compatibility-table" data-x="4000" data-y="5000" data-z="-4000">
+    <p>ES5の実装状況などは下記のサイトが参考になります。</p>
+    <p class="note"><a href="http://kangax.github.com/es5-compat-table/">ECMAScript 5 compatibility table </a></p>
+  </section>
+
+  <section class="step title" id="es-next-again" data-x="5000" data-y="0" data-z="0">
+    <h1>よりSchemerフレンドリなES.next</h1>
+  </section>
+
+  <section class="step" id="es-next-body" data-x="5000" data-y="0" data-z="1000">
+    <h1>よりSchemerフレンドリなES.next</h1>
+    <p>ES.next（EcmaScript 6）はずいぶんSchemerフレンドリになってきます。</p>
+    <p class="note">※2012年05月12日の<a href="http://wiki.ecmascript.org/doku.php?do=show&id=harmony%3Aproposals">[[harmony:proposals]]</a>を参考にしています。</p>
+  </section>
+
+  <section class="step" id="es-next-let" data-x="5000" data-y="1000">
+    <h1>let</h1>
+    <div class="columns">
+      <div class="column left">
+        <h2>ES.next（ES6）</h2>
+<pre>
+{ let i = 100;
+  { let i = 200;
+    console.log(i); }
+    // 200
+  { let i = 300;
+    console.log(i); }
+    // 300
+  console.log(i); }  
+  // 100
+  console.log(i);
+  // i is not defined
+</pre>
+      </div>
+      <div class="column right">
+        <h2>Scheme</h2>
+<pre>
+(let ((i 100))
+  (let ((i 200))
+    (print i))
+    ;; 200
+  (let ((i 300))
+    (print i))
+    ;; 300
+  (print i))
+  ;; 100
+(print i)
+;; unbound variable i
+</pre>
+      </div>
+    </div>
+    <p class="note"><a href="http://wiki.ecmascript.org/doku.php?id=harmony:block_scoped_bindings">harmony:block_scoped_bindings [ES Wiki]</a></p>
+  </section>
+
+  <section class="step" id="es-next-destructuring" data-x="5000" data-y="2000">
+    <h1>分割代入</h1>
+    <h2>ES.next（ES6）</h2>
+<pre>
+{
+  let [a, b] = [1, 2];
+  let [c, d] = [3, 4];
+  [a, b, c, d];
+  // [1, 2, 3, 4]
+}
+</pre>
+    <h2>Scheme</h2>
+<pre>
+(use srfi-11)
+(let-values (((a b) (values 1 2))
+             ((c d) (values 3 4)))
+  (list a b c d))
+;; (1 2 3 4)
+</pre>
+    <p class="note"><a href="http://wiki.ecmascript.org/doku.php?id=harmony:destructuring">harmony:destructuring [ES Wiki]</a></p>
+  </section>
+
+  <section class="step" id="es-next-rest-parameters" data-x="5000" data-y="3000">
+    <h1>レストパラメータ</h1>
+    <div class="columns">
+      <div class="column left">
+        <h2>ES.next（ES6）</h2>
+<pre>
+var f = function(a, b, ...z) {
+  return [a, b, z];
+};
+f(1, 2, 3, 4, 5);
+// [1, 2, [3, 4, 5]]
+</pre>
+      </div>
+      <div class="column right">
+        <h2>Scheme</h2>
+<pre>
+(define f (lambda (a b . z)
+  (list a b z)))
+(f 1 2 3 4 5)
+;; (1 2 (3 4 5))
+</pre>
+      </div>
+    </div>
+    <p class="note"><a href="http://wiki.ecmascript.org/doku.php?id=harmony:rest_parameters">harmony:rest_parameters [ES Wiki]</a></p>
+  </section>
+
+  <section class="step" id="es-next-generator" data-x="5000" data-y="4000">
+    <h1>ジェネレータ</h1>
+    <div class="columns">
+      <div class="column left">
+        <h2>ES.next（ES6）</h2>
+<pre>
+function* fibonacci() {
+  let [prev, curr] = [0, 1];
+  for (;;) {
+    [prev, curr] = [curr, prev + curr];
+    yield curr;
+  }
+}
+let seq = fibonacci();
+print(seq.next()); // 1
+print(seq.next()); // 2
+print(seq.next()); // 3
+print(seq.next()); // 5
+print(seq.next()); // 8
+</pre>
+      </div>
+      <div class="column right" data-x="5000" data-y="5000">
+        <h2>Scheme</h2>
+        <p class="note"><a href="http://practical-scheme.net/wiliki/wiliki.cgi?Scheme%3Agenerator%E3%81%A8do%E3%81%A8while">Scheme:generatorとdoとwhile</a></p>
+      </div>
+    </div>
+    <p class="note"><a href="http://wiki.ecmascript.org/doku.php?id=harmony:generators">harmony:generators [ES Wiki]</a></p>
+  </section>
+
+  <section class="step" id="es6-compatiblity-table" data-x="5000" data-y="6000">
+    <p>ES.next（ES6）の実装状況などは下記のサイトが参考になります。</p>
+    <p class="note"><a href="http://kangax.github.com/es5-compat-table/es6/">ECMAScript 6 compatibility table</a></p>
+  </section>
+
+  <section class="step" id="mozjs" data-x="5000" data-y="7000">
+    <h1>おまけ - Mozjs</h1>
+    <p>Brendan Eich先生がCTOだけあって、MozillaはES6の機能を相当前から先行実装していたり、JavaScriptの処理系の中でもRhinoにおいては、インタープリターモードにて、末尾呼び出しの除去や、継続オブジェクトをサポートしていたりします。</p>
+    <p class="note"><a href="http://www.mozilla.org/rhino/opt.html">Optimization</a></p>
+  </section>
+
+  <section class="step index" id="agenda-4" data-x="6000" data-y="0">
+    <h1>Agenda</h1>
+    <ul>
+      <li><del>JavaScriptはSchemerが作った</del></li>
+      <li><del>JavaScriptとSchemeの共通点</del></li>
+      <li><del>よりSchemerフレンドリなES.next</del></li>
+      <li>よりSchemerフレンドリなES Harmonyの未来</li>
+    </ul>
+  </section>
+
+  <section class="step title" id="es-harmony" data-x="6000" data-y="1000">
+    <h1>よりSchemerフレンドリな<br />ES Harmonyの未来</h1>
+  </section>
+
+  <section class="step" id="harmony-of-my-dreams" data-x="6000" data-y="2000">
+    <h1>Harmony Of My Dreams by Brendan Eich</h1>
+    <p>JavaScriptをこんな風にしたいんだと、proposalに上がっていないものも含めて、Brendan Eich先生がざっくばらんに語っている記事。</p>
+    <p class="note">
+      <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">Hermony Of My Dream</a><br />
+      <a href="http://brendaneich.com/2011/05/my-jsconf-us-presentation/">My JSConf.US Presentation</a>※<br />※Harmony Of My Dreamsのエントリーの後に開かれたカンファレンスの資料</p>
+  </section>
+
+  <section class="step" id="love-scheme-rip-guy" data-x="6000" data-y="3000">
+    <p>文章から、Brendan Eich先生のScheme愛や、<br />
+    Guy Steel先生への尊敬の気持ちが伝わってくる熱い文章です。</p>
+  </section>
+
+  <section class="step" id="to-be-better-small-lang" data-x="6000" data-y="4000">
+    <p>CoffeeScriptにずいぶん感化されてるご様子。</p>
+    <p>より小さい言語にしていきたいとのこと。まるでSchemeですね。</p>
+    <p>proposalにまだ上がってないものとしては、関数のリテラル表記、レコード、タプル、末尾呼び出しの表記例が載っています。</p>
+  </section>
+
+  <section class="step" id="closing" data-x="6000" data-y="5000">
+    <p>最後にこんなことを言っています。</p>
+  </section>
+
+  <section class="step" id="chance-to-evolve-en" data-x="6000" data-y="6000">
+    <blockquote>
+This is a long post. If you made it this far and take away anything, I hope it is Guy's "Growing a Language" meta-point. JS will be around for a very long time, and it has a chance to evolve until its users can replace TC39 as stewards of its growth. 
+    </blockquote>
+  </section>
+
+  <section class="step" id="chance-to-evolve-ja" data-x="6000" data-y="6000" data-z="-1000">
+    <h1>適当な訳</h1>
+    <p>長文スマソ。このまま良い感じになって、Guyの言う"成長する言語"を作れたらいいな。JSはすげー長く使われると思うし、ユーザーがECMAScriptを置き換えるこの時が、チャンスなんだよね。</p>
+  </section>
+
+  <section class="step" id="the-promised-land-en" data-x="6000" data-y="7000" data-z="0">
+    <blockquote>
+The promised land would be macros, for syntactic abstraction and extensibility.
+    </blockquote>
+  </section>
+
+  <section class="step" id="the-promised-land-ja" data-x="6000" data-y="7000" data-z="-1000">
+    <h1>適当な訳</h1>
+    <p>小さな言語の最終的な到達点はマクロだと思ってる。</p>
+  </section>
+
+  <section class="step" id="enough-for-me-en" data-x="6000" data-y="8000" data-z="0">
+    <p>I am not holding my breath, but even without macros, the Harmony-of-my-dreams sketched here would be enough for me.</p>
+  </section>
+
+  <section class="step" id="enough-for-me-ja" data-x="6000" data-y="8000" data-z="-1000">
+    <h1>適当な訳</h1>
+    <p>まー、でもそこまではいいわ。マクロなくたって、ここに書いたことが実現できたら俺はそれで充分っす。</p>
+  </section>
+
+  <section class="step" id="nothing-macros" data-x="6000" data-y="9000" data-z="0">
+    <p>Schemeフレンドリになると力説してきましたが、マクロを導入するとかは、さすがにないっぽいですね...</p>
+  </section>
+
+  <section class="step" id="syuzo" data-x="6000" data-y="9000" data-z="-3000">
+    <blockquote>
+      諦めんなよ!<br />
+      諦めんなよ、お前！！<br />
+      どうしてそこでやめるんだ、そこで！！<br />
+      もう少し頑張ってみろよ！<br />
+      ダメダメダメ!諦めたら!<br />
+      周りのこと思えよ、応援してる人たちのこと思ってみろって!<br />
+      あともうちょっとのところなんだから!
+    </blockquote>
+  </section>
+
+  <section class="step" id="look-foward-to" data-x="6000" data-y="10000" data-z="0">
+    <p>とエールを送りつつも、<br />
+    Schemerフレンドリになる、<br />
+    未来のJavaScriptはとても楽しみですね。</p>
+  </section>
+
+  <section class="step index" id="agenda-5" id="look-foward-to" data-x="6000" data-y="11000" data-z="0">
+    <h1>Agenda</h1>
+    <ul>
+      <li><del>JavaScriptはSchemerが作った</del></li>
+      <li><del>JavaScriptとSchemeの共通点</del></li>
+      <li><del>よりSchemerフレンドリなES.next</del></li>
+      <li><del>よりSchemerフレンドリなES Harmonyの未来</del></li>
+    </ul>
+  </section>
+
+  <section class="step" id="end" id="look-foward-to" data-x="6000" data-y="12000" data-z="0">
+    <h1>ご清聴ありがとうございました</h1>
+  </section>
+
+</div>
+
+<div class="hint">
+  <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+  document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+<script src="impress.js/js/impress.js"></script>
+<script>impress().init();</script>
+</body>
+</html>

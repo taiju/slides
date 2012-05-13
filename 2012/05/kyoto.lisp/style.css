@@ -1,0 +1,28 @@
+pre { font-family: monospace; font-size: 80%; }
+.impress-enabled .step { opacity: 0; }
+.step { width: 1000px; }
+del { color: #999; }
+p.note { font-size: 60%; margin-top: 1em; }
+section h1 { font-weight: bold; font-size: 100%; margin-bottom: .5em; }
+section h2 { font-weight: bold; font-size: 90%; margin-top: .5em; }
+section p { font-size: 90%; }
+section pre { font-size: 50%; }
+section ul { margin: 1em; list-style-type: disc; font-size: 80%; }
+section ul li { line-height: 2; }
+section.title h1 { text-align: center; font-weight: bold; font-size: 120%; }
+section .columns { overflow: hidden; }
+section .columns .column { width: 42%; }
+section .columns .left { float: left; }
+section .columns .right { float: right; }
+section figcaption { font-size: 60%; text-align: center; }
+#start, #end { text-align: center; }
+#immunity ul { font-size: 60%; }
+#brendan-profile ul { font-size: 70%; margin: 0; }
+#brendan-profile .left { max-width: 249px; width: 30%; }
+#brendan-profile .right { width: 65%; }
+#common-lexical pre { font-size: 45%; }
+#for-schemer-es5 ul { font-size: 70%; }
+#es-next-generator .left { width: 60%; }
+#es-next-generator .right { width: 36%; }
+#es-next-generator .right p { font-size: 70%; }
+#es-next-generator .right p.note { font-size: 60%; margin-top: 1em; }
