@@ -1,3 +1,6 @@
 [submodule "2012/05/kyoto.lisp/impress.js"]
 	path = 2012/05/kyoto.lisp/impress.js
 	url = git://github.com/bartaz/impress.js.git
+[submodule "2012/09/kanazawa.rb/impress.js"]
+	path = 2012/09/kanazawa.rb/impress.js
+	url = git://github.com/bartaz/impress.js.git

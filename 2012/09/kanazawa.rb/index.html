@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Mojoliciousと愉快なPerl</title>
+    <meta name="description" content="Mojoliciousの紹介 + Rubyist向けPerlの今" />
+    <meta name="author" content="HIGASHI Taiju" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="impress.js/css/impress-demo.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="impress.js/favicon.png" />
+    <link rel="apple-touch-icon" href="impress.js/apple-touch-icon.png" />
+    <style type="text/less">
+      h1 {
+        margin: 0 0 .5em;
+      }
+      ul {
+        font-size: 70%;
+        padding: 0 0 0 1em;
+        li {
+          list-style-type: disc;
+          line-height: 1.7;
+          padding: 0 0 0 .5em;
+        }
+      }
+      dl.flatten {
+        font-size: 70%;
+        dt {
+          float: left;
+          display: inline-block;
+          clear: both;
+          color: #f33;
+        }
+        dd {
+          &:before {
+            content: "->";
+          }
+          display: inline-block;
+          float: left;
+        }
+      }
+      div.gist {
+        font-size: 18px;
+      }
+      #under div.gist {
+        font-size: 16px;
+      }
+      #start {
+        text-align: center;
+        p {
+          font-size: 70%;
+        }
+      }
+      #end {
+        text-align: center;
+      }
+      #about-mojolicious, #all-in-one, #how-to-use-controller {
+        ul {
+          overflow: hidden;
+          li {
+            width: 47%;
+            float: left;
+            font-size: 80%;
+          }
+        }
+      }
+      #all-in-one {
+        p {
+          font-size: 60%;
+        }
+      }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.3.0/less-1.3.0.min.js"></script>
+  </head>
+  <body class="impress-not-supported">
+    <div class="fallback-message">
+      <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+      <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div>
+    <div id="impress">
+      <section id="start" class="step" data-x="0">
+        <h1>Mojoliciousと愉快なPerl</h1>
+        <p>taiju@kanazawa.rb</p>
+        <p>2012.09.22</p>
+      </section>
+      <section id="perl-ruby" class="step" data-x="2000">
+        <h1>PerlとRuby</h1>
+        <ul>
+          <li>昔: Perl-&gt;Ruby</li>
+          <li>今: Ruby-&gt;Perl</li>
+        </ul>
+      </section>
+      <section id="from-ruby-exp" class="step" data-x="4000">
+        <h1>Rubyから学んだPerlのツール達</h1>
+        <dl class="flatten">
+          <dt>scrAPI</dt><dd>WebScraper</dd></li>
+          <dt>Homebrew, RVM</dd><dd>Perlbrew</dd></li>
+          <dt>Rack</dt><dd>PSGI/Plack</dd></li>
+          <dt>Bundler</dt><dd>Carton</dd></li>
+          <dt>Ruby on Rails</dt><dd>Catalyst</dd></li>
+          <dt>Sinatra</dt><dd>Mojolicious::Lite</dd></li>
+        </dl>
+      </section>
+      <section id="history-of-web-application-by-perl" class="step" data-x="6000">
+        <h1>Perlを使ったWebアプリの開発の変遷</h1>
+        <ul>
+          <li>CGI</li>
+          <li>CGI with mod_perl or FastCGI</li>
+          <li>PSGI/Plack</li>
+        </ul>
+      </section>
+      <section id="about-mojolicious" class="step" data-x="8000">
+        <h1>Mojolicious</h1>
+        <ul>
+          <li>必須環境: Perl5.10.1以上</li>
+          <li>開発者はCatalyst作者</li>
+          <li>単一ファイルモード &amp; DSL</li>
+          <li>レストフルなルート</li>
+          <li>テンプレートエンジン</li>
+          <li>セッション管理</li>
+          <li>署名付きCookie</li>
+          <li>テストフレームワーク</li>
+          <li>各種サーバーへの対応</li>
+          <li>便利なCLツール</li>
+          <li>豊富なドキュメント</li>
+        </ul>
+      </section>
+      <section id="why-mojolicious" class="step" data-x="10000">
+        <h1>なぜMojoliciousがおすすめか</h1>
+        <ul>
+          <li>選べる開発スタイル</li>
+          <li>All in one</li>
+          <li>豊富なドキュメント</li>
+        </ul>
+      </section>
+      <section id="select-develop-styles" class="step" data-x="12000">
+        <h1>選べる開発スタイル</h1>
+        <dl class="flatten">
+          <dt>小規模</dt>
+          <dd>Mojolicious::Lite</dd>
+          <dt>中規模以上</dt>
+          <dd>Mojolicious</dd>
+        </dl>
+      </section>
+      <section id="all-in-one" class="step" data-x="14000">
+        <h1>All in one</h1>
+        <ul>
+          <li>Mojo::Base</li>
+          <li>Mojo::Collection</li>
+          <li>Mojolicious::Command</li>
+          <li>Mojo::DOM</li>
+          <li>Mojo::JSON</li>
+          <li>Mojo::Server::*</li>
+          <li>Mojo::Template</li>
+          <li>Mojo::UserAgent</li>
+          <li>Mojo::Util</li>
+          <li>Mojolicious::Command::*</li>
+          <li>Test::Mojo</li>
+          <li>ojo</li>
+        </ul>
+        <p>etc...</p>
+      </section>
+      <section id="document" class="step" data-x="16000">
+        <h1>豊富なドキュメント</h1>
+        <ul>
+          <li><a href="https://github.com/kraih/mojo/wiki">Github Wiki</a></li>
+          <li><a href="https://github.com/yuki-kimoto/mojolicious-guides-japanese/wiki">Mojoliciousドキュメント 日本語訳</a></li>
+          <li>POD</li>
+        </ul>
+      </section>
+      <section id="mojolicious-sample" class="step" data-x="18000">
+        <h1>サンプルコード</h1>
+        <script src="https://gist.github.com/3764146.js?file=sampleapp.pl"></script>
+      </section>
+      <section id="insall" class="step" data-x="20000">
+        <h1>インストール</h1>
+        <script src="https://gist.github.com/3764146.js?file=install.sh"></script>
+      </section>
+      <section id="development-flow" class="step" data-x="22000">
+        <h1>開発の流れ (Mojolicious::Lite)</h1>
+        <ul>
+          <li>アプリ生成コマンドを実行</li>
+          <li>開発サーバーを起動</li>
+          <li>テストを書く</li>
+          <li>コードを書く</li>
+          <li>deploy</li>
+        </ul>
+      </section>
+      <section id="generate-lite-app" class="step" data-x="24000">
+        <h1>アプリ生成コマンドを実行</h1>
+        <script src="https://gist.github.com/3764146.js?file=generate.sh"></script>
+      </section>
+      <section id="run-morbo" class="step" data-x="26000">
+        <h1>開発サーバーを起動</h1>
+        <script src="https://gist.github.com/3764146.js?file=run-morbo.sh"></script>
+      </section>
+      <section id="write-test" class="step" data-x="28000">
+        <h1>テストを書く</h1>
+        <script src="https://gist.github.com/3764146.js?file=00_myapp.t"></script>
+      </section>
+      <section id="write-code" class="step" data-x="30000">
+        <h1>コードを書く</h1>
+        <script src="https://gist.github.com/3764146.js?file=myapp.pl"></script>
+      </section>
+      <section id="deploy" class="step" data-x="32000">
+        <h1>deploy</h1> 
+        <script src="https://gist.github.com/3764146.js?file=deploy.sh"></script>
+      </section>
+      <section id="how-to-use-controller" class="step" data-x="34000">
+        <h1>コントローラでできること</h1>
+        <ul>
+          <li>Helpers</li>
+          <li>Plugins</li>
+          <li>GET/POST parameters</li>
+          <li>Stash, Flash, Session</li>
+          <li>HTTP methods</li>
+          <li>Placeholders</li>
+          <li>Conditions</li>
+          <li>Under</li>
+          <li>Hooks</li>
+          <li>WebSockets</li>
+          <li>Mode</li>
+          <li>Testing</li>
+        </ul>
+      </section>
+      <section id="helpers" class="step" data-x="36000">
+        <h1>Helpers</h1>
+        <script src="https://gist.github.com/3764262.js?file=helpers.pl"></script>
+      </section>
+      <section id="plugins" class="step" data-x="38000">
+        <h1>Plugins</h1>
+        <script src="https://gist.github.com/3764262.js?file=plugins.pl"></script>
+      </section>
+      <section id="parameters" class="step" data-x="40000">
+        <h1>GET/POST parameters</h1>
+        <script src="https://gist.github.com/3764262.js?file=parameters.pl"></script>
+      </section>
+      <section id="stash-flash-sessions" class="step" data-x="42000">
+        <h1>Stash, Flash, and Sessions</h1>
+        <script src="https://gist.github.com/3764262.js?file=stash-flash-sessions.pl"></script>
+      </section>
+      <section id="http-methods" class="step" data-x="44000">
+        <h1>HTTP methods</h1>
+        <script src="https://gist.github.com/3764262.js?file=http-methods.pl"></script>
+      </section>
+      <section id="placeholders" class="step" data-x="46000">
+        <h1>Placeholders</h1>
+        <script src="https://gist.github.com/3764262.js?file=placeholders.pl"></script>
+      </section>
+      <section id="conditions" class="step" data-x="48000">
+        <h1>Conditions</h1>
+        <script src="https://gist.github.com/3764262.js?file=conditions.pl"></script>
+      </section>
+      <section id="under" class="step" data-x="50000">
+        <h1>Under</h1>
+        <script src="https://gist.github.com/3764262.js?file=under.pl"></script>
+      </section>
+      <section id="hooks" class="step" data-x="52000">
+        <h1>Hooks</h1>
+        <script src="https://gist.github.com/3764274.js?file=hooks.pl"></script>
+      </section>
+      <section id="websockets" class="step" data-x="54000">
+        <h1>WebSockets</h1>
+        <script src="https://gist.github.com/3764262.js?file=websockets.pl"></script>
+      </section>
+      <section id="mode" class="step" data-x="56000">
+        <h1>Mode</h1>
+        <script src="https://gist.github.com/3764274.js?file=mode.sh"></script>
+        <script src="https://gist.github.com/3764274.js?file=mode.pl"></script>
+      </section>
+      <section id="testing" class="step" data-x="58000">
+        <h1>Testing</h1>
+        <script src="https://gist.github.com/3764274.js?file=testing.pl"></script>
+      </section>
+      <section id="bonus" class="step" data-x="60000">
+        <h1>おまけ</h1>
+        <p>ojoを使ってみる</p>
+      </section>
+      <section id="summary" class="step" data-x="62000">
+        <h1>まとめ</h1>
+        <ul>
+          <li>Mojoliciousにはなんでも揃っている</li>
+          <li>MojoliciousはPerlのモダンなスタイルを学ぶのにも良い</li>
+          <li>perldoc重要</li>
+          <li>たまにはPerlでも遊んでね</li>
+        </ul>
+      </section>
+      <p id="end" class="step" data-x="64000">ご清聴ありがとうございました</p>
+    </div><!-- #impress -->
+    <div class="hint">
+      <p>Use a spacebar or arrow keys to navigate</p>
+    </div>
+    <script>
+    if ("ontouchstart" in document.documentElement) { 
+      document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+    }
+    </script>
+    <script src="impress.js/js/impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>
