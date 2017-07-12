@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<!-- 2017-07-12 水 20:56 -->
+<meta  charset="utf-8" />
+<meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
+<meta  name="generator" content="Org-mode with org-ioslide" />
+<meta  name="author" content="taiju" />
+
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--This one seems to work all the time, but really small on ipad-->
+<!--<meta name="viewport" content="initial-scale=0.4">-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" media="all" href="theme/css/default.css" />
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css" />
+<link rel="stylesheet" media="all" href="theme/css/small-icon.css" />
+<base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+<script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+
+   <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local" type="text/javascript"></script>
+</head>
+<body style="opacity: 0">
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+       <aside class="gdbar"><img src="images/fp.png"></aside>
+       <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+       <hgroup class="auto-fadein">
+         <h1 data-config-title><!-- populated from slide_config.json --></h1>
+         <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+         <p data-config-presenter><!-- populated from slide_config.json --></p>
+       </hgroup>
+    </slide>
+  
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org7764799" class="outline-2">
+<h2 id="org7764799">自己紹介</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="js">
+{
+  "名前": "HIGASHI Taiju",
+  "勤務先": "株式会社永和システムマネジメント",
+  "部署": "ITサービス事業部",
+  "活動領域": "福井",
+  "好きな言語": ["Perl", "JavaScript", "Lisp-[12]", "Haskell"]
+}</pre>
+
+</div>
+
+<p>
+4年ほど浦島太郎気味なので、今日の内容がすでに流行って廃れた話だったらごめんなさい。
+</p>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orge0c3c06" class="outline-2">
+<h2 id="orge0c3c06">関数型プログラミング勉強会所属</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/fp.png" alt="fp.png" width="300px" />
+</p>
+</div>
+</article>
+
+<ul>
+<li>ITサービス事業部の社内勉強会のひとつ</li>
+<li>FPer (関数型プログラマ)養成機関</li>
+<li>今のところ福井メンバーはひとり</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org483b7a6" class="outline-2">
+<h2 id="org483b7a6">関数型プログラミングとの出会い</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>JavaScriptにハマった</li>
+<li>Schemeにハマった</li>
+<li>JavaScript=Scheme という事実を知った</li>
+<li>JavaScriptで関数型プログラミングを始めた</li>
+</ul>
+
+<p>
+過去にはこんな発表をしました。
+</p>
+
+<ul>
+<li><a href="https://www.slideshare.net/taiju/javascriptlisp">JavaScriptとLisp</a></li>
+<li><a href="https://taiju.github.io/slides/2012/05/kyoto.lisp">よりSchemerフレンドリなJavaScriptへ</a></li>
+</ul>
+
+<article class="flexbox vcenter">
+<p>
+結果的にJavaScriptで関数型言語に入門して良かったと思ってます。
+</p>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgc3b00ca" class="outline-2">
+<h2 id="orgc3b00ca">なぜ JavaScript で入門するのか</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>普通に使っているだけで高階関数に触れることになるから</li>
+<li>望まなくても書く羽目になる可能性が高い言語だから</li>
+<li>出自からしてもSchemeの流れを汲んだ言語だから</li>
+<li>ブラウザさえあれば始められるから</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orga776678" class="outline-2">
+<h2 id="orga776678">入門書候補</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<a href="https://www.oreilly.co.jp/books/9784873116600/">JavaScriptで学ぶ関数型プログラミング</a>
+</p>
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/fp-with-underscore-js.jpg" alt="fp-with-underscore-js.jpg" width="260px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org411603d" class="outline-2">
+<h2 id="org411603d">JavaScriptで学ぶ関数型プログラミング</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Pros
+<ul>
+<li>本当に関数型プログラミングに触れるのが初めてならたぶん良書</li>
+<li>Schemeで関数型プログラミングの書籍を書こうとしていたらしい</li>
+</ul></li>
+<li>Cons
+<ul>
+<li>内容が若干古い (ES 2015未対応)</li>
+<li>Underscore.js ありき
+<ul>
+<li>和書は副題認識しづらいので若干タイトル詐(ry</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<article class="flexbox vcenter">
+<p>
+JavaScriptでもっと関数型プログラミングできる気がする。
+</p>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org24ba7ce" class="outline-2">
+<h2 id="org24ba7ce">Ramda</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>より関数型プログラミングできるライブラリ調べてたら出会った</li>
+<li>日本ではあまり流行ってなさそう</li>
+<li>Underscore でやりたいことはほぼできる</li>
+<li>Underscore より FP 指向</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org8106b3a" class="outline-2">
+<h2 id="org8106b3a">Underscore vs Ramda - 1</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="js">
+// Underscore
+const incomplete = _.partial(_.filter, _, {complete: false});
+// or
+const incomplete = xs =&gt; _.filter(xs, {complete: false});</pre>
+
+</div>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="js">
+// Rambda
+const incomplete = R.filter(R.where({complete: false}));</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org1038e27" class="outline-2">
+<h2 id="org1038e27">Underscore vs Ramda - 2</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="js">
+// Underscore
+const stooges = [{name: 'curly', age: 25}, ...];
+const yougest = l =&gt; _.chain(l).sortBy(stooge =&gt; stooge.age)
+			       .map(stooge =&gt; stooge.name + ' is ' + stooge.age)
+			       .first()
+			       .value();
+yougest(stooges);</pre>
+
+</div>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="js">
+// Rambda
+const stooges = [{name: 'curly', age: 25}, ...];
+const yougest = R.pipe(R.sortBy(R.prop('age')),
+		       R.juxt([R.pluck('name'), R.pluck('age')]),
+		       R.apply(R.zip),
+		       R.map(R.join(' is ')),
+		       R.head);
+yougest(stooges);</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org7f60307" class="outline-2">
+<h2 id="org7f60307">Ramda で関数型プログラミングしやすい理由など</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>関数合成しやすいように引数の順番がデザインされている</li>
+<li>引数はデフォルトでカリー化される</li>
+<li>Haskellなどで使われている関数型プログラミングのための部品がたくさんある</li>
+<li><a href="https://github.com/fantasyland/fantasy-land">Fantasy Land</a> の実装である <a href="https://github.com/ramda/ramda-fantasy">ramda-fantasy</a> を使うともっとHaskellに寄る</li>
+<li>ただ、遅延シーケンスや遅延評価の仕組みはない</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org6a539b6" class="outline-2">
+<h2 id="org6a539b6">Fantasy Land</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Haskellの型クラスっぽいもののJavaScript用の仕様</li>
+<li>FantasyLand Specification には、Functor, Applicative, Monoid, Maybe等の型の仕様が書いてある</li>
+<li>FantasyLandの実装を使うと、それらのデータ型がもれなく使用できる</li>
+<li>Ramda には ramda-fantasy という実装がある
+<ul>
+<li>ただ、FantasyLand のリポジトリの <code>implementations.md</code> にはなぜか記載がない&#x2026;</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org30e0017" class="outline-2">
+<h2 id="org30e0017">まとめ</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>日本で流行ってなさそうだけど、JavaScriptで関数型プログラミングに入門するなら、Rambda + rambda-fantasy が良さそうと思った</li>
+<li>良さそうなFP向けライブラリには大抵ドキュメントに型注釈があるという知見を得た</li>
+<li>入門記事書けたらいいけど挫折するかもしれないので良かったら誰か書いてください</li>
+</ul>
+
+
+</article>
+
+</slide>
+<slide class="backdrop"></slide>
+</slides> 
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body> 
+
+</html>

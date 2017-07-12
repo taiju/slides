@@ -1,0 +1,148 @@
+#+TITLE: FP入門方法思案 with JavaScript
+#+SUBTITLE: (car (cdr ファンクション倶楽部))
+#+DATE: 2017/07/12
+#+AUTHOR: taiju
+#+EMAIL: higashi@taiju.info
+#+COMPANY: esm
+#+WWW: http://taiju.hatenablog.com/
+#+TWITTER: https://twitter.com/taiju
+#+GITHUB: https://github.com/taiju
+#+FAVICON: images/fp.png
+#+ICON: images/fp.png
+#+OPTIONS: num:nil
+
+* 自己紹介
+
+#+BEGIN_SRC js
+{
+  "名前": "HIGASHI Taiju",
+  "勤務先": "株式会社永和システムマネジメント",
+  "部署": "ITサービス事業部",
+  "活動領域": "福井",
+  "好きな言語": ["Perl", "JavaScript", "Lisp-[12]", "Haskell"]
+}
+#+END_SRC
+
+4年ほど浦島太郎気味なので、今日の内容がすでに流行って廃れた話だったらごめんなさい。
+
+* 関数型プログラミング勉強会所属
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 300px
+[[file:images/fp.png]]
+#+END_CENTER
+
+- ITサービス事業部の社内勉強会のひとつ
+- FPer (関数型プログラマ)養成機関
+- 今のところ福井メンバーはひとり
+
+* 関数型プログラミングとの出会い
+
+- JavaScriptにハマった
+- Schemeにハマった
+- JavaScript=Scheme という事実を知った
+- JavaScriptで関数型プログラミングを始めた
+
+過去にはこんな発表をしました。
+
+- [[https://www.slideshare.net/taiju/javascriptlisp][JavaScriptとLisp]]
+- [[https://taiju.github.io/slides/2012/05/kyoto.lisp][よりSchemerフレンドリなJavaScriptへ]]
+
+#+BEGIN_CENTER
+結果的にJavaScriptで関数型言語に入門して良かったと思ってます。
+#+END_CENTER
+
+* なぜ JavaScript で入門するのか
+
+- 普通に使っているだけで高階関数に触れることになるから
+- 望まなくても書く羽目になる可能性が高い言語だから
+- 出自からしてもSchemeの流れを汲んだ言語だから
+- ブラウザさえあれば始められるから
+
+* 入門書候補
+
+[[https://www.oreilly.co.jp/books/9784873116600/][JavaScriptで学ぶ関数型プログラミング]]
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 260px
+[[file:images/fp-with-underscore-js.jpg]]
+#+END_CENTER
+
+* JavaScriptで学ぶ関数型プログラミング
+
+- Pros
+  - 本当に関数型プログラミングに触れるのが初めてならたぶん良書
+  - Schemeで関数型プログラミングの書籍を書こうとしていたらしい
+- Cons
+  - 内容が若干古い (ES 2015未対応)
+  - Underscore.js ありき
+    - 和書は副題認識しづらいので若干タイトル詐(ry
+
+#+BEGIN_CENTER
+JavaScriptでもっと関数型プログラミングできる気がする。
+#+END_CENTER
+
+* Ramda
+
+- より関数型プログラミングできるライブラリ調べてたら出会った
+- 日本ではあまり流行ってなさそう
+- Underscore でやりたいことはほぼできる
+- Underscore より FP 指向
+
+* Underscore vs Ramda - 1
+
+#+BEGIN_SRC js
+// Underscore
+const incomplete = _.partial(_.filter, _, {complete: false});
+// or
+const incomplete = xs => _.filter(xs, {complete: false});
+#+END_SRC
+
+#+BEGIN_SRC js
+// Rambda
+const incomplete = R.filter(R.where({complete: false}));
+#+END_SRC
+
+* Underscore vs Ramda - 2
+
+#+BEGIN_SRC js
+// Underscore
+const stooges = [{name: 'curly', age: 25}, ...];
+const yougest = l => _.chain(l).sortBy(stooge => stooge.age)
+                               .map(stooge => stooge.name + ' is ' + stooge.age)
+                               .first()
+                               .value();
+yougest(stooges);
+#+END_SRC
+
+#+BEGIN_SRC js
+// Rambda
+const stooges = [{name: 'curly', age: 25}, ...];
+const yougest = R.pipe(R.sortBy(R.prop('age')),
+                       R.juxt([R.pluck('name'), R.pluck('age')]),
+		       R.apply(R.zip),
+		       R.map(R.join(' is ')),
+		       R.head);
+yougest(stooges);
+#+END_SRC
+
+* Ramda で関数型プログラミングしやすい理由など
+
+- 関数合成しやすいように引数の順番がデザインされている
+- 引数はデフォルトでカリー化される
+- Haskellなどで使われている関数型プログラミングのための部品がたくさんある
+- [[https://github.com/fantasyland/fantasy-land][Fantasy Land]] の実装である [[https://github.com/ramda/ramda-fantasy][ramda-fantasy]] を使うともっとHaskellに寄る
+- ただ、遅延シーケンスや遅延評価の仕組みはない
+
+* Fantasy Land
+
+- Haskellの型クラスっぽいもののJavaScript用の仕様
+- FantasyLand Specification には、Functor, Applicative, Monoid, Maybe等の型の仕様が書いてある
+- FantasyLandの実装を使うと、それらのデータ型がもれなく使用できる
+- Ramda には ramda-fantasy という実装がある
+  - ただ、FantasyLand のリポジトリの ~implementations.md~ にはなぜか記載がない...
+
+* まとめ
+
+- 日本で流行ってなさそうだけど、JavaScriptで関数型プログラミングに入門するなら、Rambda + rambda-fantasy が良さそうと思った
+- 良さそうなFP向けライブラリには大抵ドキュメントに型注釈があるという知見を得た
+- 入門記事書けたらいいけど挫折するかもしれないので良かったら誰か書いてください
