@@ -1,0 +1,81 @@
+#+TITLE: Perl言語とプログラマの三大美徳
+#+AUTHOR: @taiju
+#+DATE: 2018-06-15
+#+STARTUP: inlineimages indent
+
+* What's Perl?
+
+[[./perl_camel.png]]
+
+- テキスト処理が得意で昔は超流行ってたプログラミング言語:hear-no-evil:
+- *nixならほぼ確実に入っている:thumbup:
+- ワンライナーで重宝する:first_place_medal:
+  - sed, awk, grepの代わりにも使えたりする
+- オンラインドキュメントが充実:books:
+  - perldocコマンドで読める
+- 標語はTMTOWTDIY（てぃむとぅでい）:metal:
+  - There's More Than One Way To Do It.
+
+* ラリー・ウォール
+
+[[./225px-Larry_Wall_YAPC_2007.jpg]]
+
+- プログラマ、言語学者:mortar_board:
+- プログラミング言語Perlの作者🐪
+- patchコマンドの作者でもある:bulb:
+
+* Perlの自然言語原理
+
+- 習熟度レベル:beginner:
+- 複数の言い方:family-mwgb:
+- 代名詞の活用:point-right-tone2:
+- 曖昧性と文脈:innocent:
+
+*REF*: http://chasen.org/~daiti-m/text/natural-ja.html
+
+* プログラマの三大美徳
+
+- 怠惰 :tired_face: *Laziness*
+- 短気 :angry: *Impatience*
+- 傲慢 :triumph: *Hubris*
+
+* 怠惰
+
+全体の労力を減らすために手間を惜しまない気質。
+この気質の持ち主は、役立つプログラムを書いてみんなの苦労を減らしたり、同じ質問に何度も答えなくてもいいように文書を書いたりする。
+よって、プログラマーの第一の美徳である。
+
+*REF*: http://tech.nikkeibp.co.jp/it/article/Watcher/20061005/250057/
+
+* 短気
+
+コンピューターが怠慢な時に感じる怒り。
+この怒りの持ち主は、今ある問題に対応するプログラムにとどまらず、今後起こりうる問題を想定したプログラムを書く。少なくともそうしようとする。
+よって、プログラマーの第二の美徳である。
+
+*REF*: http://tech.nikkeibp.co.jp/it/article/Watcher/20061005/250058/
+
+* 傲慢
+
+神罰が下るほどの過剰な自尊心。
+または人様に対して恥ずかしくないプログラムを書き、また保守しようとする気質。
+よって、プログラマーの第三の美徳である。
+
+*REF*: http://tech.nikkeibp.co.jp/it/article/Watcher/20061005/250042/
+
+* :warning: 注意
+
+これらは人に向けるものではなく、
+自分自身やコードに向けるものであることを念頭に置くこと！:no-good-tone1:
+コードを憎んで人を憎まず:see-no-evil:
+* まとめ
+
+- Perlは言語学者が設計したという観点で見ると面白い言語
+- プログラマの三大美徳を身に付けてハッカーらしく振る舞おう
+- Perlは下記の用途としておすすめ（プログラミング言語としての側面ではなく）
+  - ベターシェルスクリプトとして
+  - ワンライナーのお供として
+- ミニマルPerlという本がオススメ
+
+
+[[./minimal-perl.jpg]]
