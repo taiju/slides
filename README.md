@@ -4,6 +4,7 @@ taijuのスライド置き場。
 
 ## What's New
 
+- 2019.01 [技術書読みたい](https://github.com/taiju/slides/blob/master/2019/01/fukumoku-48/slide.org)
 - 2018.06 [Perlとプログラマの三大美徳](https://github.com/taiju/slides/blob/master/2018/06/its-camp-2018/slide.org)
 - 2018.01 [はじめての OSS ドキュメント翻訳](https://github.com/taiju/slides/blob/master/2018/01/fukumoku-36/slide.org)
 - 2017.07 [(car (cdr ファンクション倶楽部)) - FP入門方法思案 with JavaScript](https://taiju.github.com/slides/2017/07/car-cdr-function-club/)

@@ -1,0 +1,59 @@
+#+TITLE: 技術書読みたい
+#+SUBTITLE: ふくもく会 その48 ~大実装モクモクブラザーズSPECIAL~
+#+AUTHOR: @taiju
+#+DATE: 2019-01-26
+* 技術書読みたい
+本当に世の中の技術書は高すぎて、読めない！
+(ハズ○ルーペ風）
+* 結論
+- ACM（米国計算機学会）の会員になった
+* 経緯
+- 単品買い
+  - 毎回の稟議で精神が疲弊 :no_good:
+- 読み放題
+  - 理想 :ok_woman:
+* 読み放題
+- Kindle Unlimited
+- Safari Books Online
+** Kindle Unlimited
+- Pros
+  - 安い ¥980/月
+  - ジャンルが豊富
+  - Kindleで読める
+- Cons
+  - 検索しづらい
+  - 売れてる本は基本ない
+  - 技術書壊滅的
+** Safari Books Online
+- Pros
+  - 高品質な技術書豊富
+  - 発売前の技術書が読めたりする
+  - 映像コンテンツもある
+- Cons
+  - 高い $39/month or $399/year
+  - 英語 :see_no_evil:
+  - 英語 :hear_no_evil:
+* ACM Membership Benefits 1/2
+[[./acm.png]]
+* ACM Membership Benefits 2/2
+[[./benefits.png]]
+** Safari Books Online
+- Pros
+  - :new: 安い $99/year
+  - 高品質な技術書豊富
+  - 発売前の技術書が読めたりする
+  - 映像コンテンツもある
+- Cons
+  - +高い $39/month or $399/year+
+  - 英語 :see_no_evil:
+  - 英語 :hear_no_evil:
+* その他
+- 仕事に関係のある書籍は会社で買ってもらう :pray:
+- 県立図書館が割とラインナップが揃っている :books:
+  - 購入リクエストも結構融通が聞くらしいという噂 :eyes:
+* 実際のところどうなの？
+- ウェブでも見れるので Google 翻訳はできるが英語はやはりしんどい
+- 読みたい箇所だけつまみ食いできる
+- Kindle で読めなくもない（ブラウザ機能で）
+- 元は取れる
+- ACMがサービスやめたら唐突に終わる
